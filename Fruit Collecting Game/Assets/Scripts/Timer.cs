@@ -7,38 +7,41 @@ using UnityEngine.SocialPlatforms.Impl;
 public class Timer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private GameObject fruitSpawner;
 
-    private float delay;
+    
 
+    public float countdown;
     public float timer;
     void Start()
     {
-        delay = 3;
+       
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-      
 
-        if (delay >= 0)
+        countdown = countdown - Time.deltaTime;
+        countdownText.text = (countdown.ToString("0"));
+        
+        if(countdown <= 0.5 )
         {
-            delay = delay -= Time.deltaTime;
+            countdownText.text = ("GO");
+            Destroy(countdownText, 1);
         }
-
-        if (delay <= 0)
-        {
-            if (timer >= 0)
-                timer = timer -= Time.deltaTime;
+              
+            if (timer >= 0 && countdown <= 0)
+                timer = timer - Time.deltaTime;
 
             timerText.text = (("TIME:" ) + timer.ToString("0"));
+
+        if(timer <= 1)
+        {
+            fruitSpawner.SetActive(false);
         }
+        
     }
 
-    IEnumerator EnableScoreUI()
-    {
-        yield return new WaitForSeconds(2f);
-     
-
-    }
 }

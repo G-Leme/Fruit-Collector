@@ -9,11 +9,6 @@ public class Fruit : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
 
 
-    private void Start()
-    {
-       
-    }
-
     private void OnEnable()
     {
         rb.velocity = Vector3.zero;
