@@ -6,7 +6,9 @@ using UnityEngine;
 public class Scoreboard : MonoBehaviour
 {
     public TextMeshProUGUI scoreboardText;
+    public TextMeshProUGUI finalScoreText;
     public int score;
+    public int finalScore;
 
     public static Scoreboard instance;
 
@@ -16,4 +18,10 @@ public class Scoreboard : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        finalScore = score;
+
+        finalScoreText.text = ("SCORE: " + finalScore.ToString());
+    }
 }
